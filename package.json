@@ -1,0 +1,23 @@
+{
+  "name": "social-network-api",
+  "version": "1.0.0",
+  "description": "## Description Using a NoSQL database to create a backend application for a social networking web application. This application is tested in Insomnia by using API routes to allow viewers to add, update and delete data in the database.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlock98/social-network-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dlock98/social-network-api/issues"
+  },
+  "homepage": "https://github.com/dlock98/social-network-api#readme",
+  "dependencies": {
+    "i": "^0.3.7"
+  }
+}
