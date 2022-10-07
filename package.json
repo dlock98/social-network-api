@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/dlock98/social-network-api#readme",
   "dependencies": {
-    "i": "^0.3.7"
+    "i": "^0.3.7",
+    "mongoose": "^6.6.5"
   }
 }
