@@ -15,32 +15,27 @@ const { Thought, User } = require("../models");
 
     getThoughtById({ params }, res) {
         Thought.findOne({ _id: params.id })
-        .populate({
-            path: "reactions",
-            select: "-__v",
-        })
-        .select("-__v")
-        .then((dbThoughtData) => {
-            if (!dbThoughtData) {
-            res.status(404).json({ message: "No thought found with this id!" });
-            return;
-            }
-            res.json(dbThoughtData);
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(400).json(err);
-        });
+            .select("-__v")
+            .then((dbThoughtData) => {
+                if (!dbThoughtData) {
+                res.status(404).json({ message: "No thought found with this id!" });
+                return;
+                }
+                res.json(dbThoughtData);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(400).json(err);
+            });
   },
 
   createThought({ params, body }, res) {
-    // console.log(body);
     Thought.create(body)
       .then(({ params }) => {
         return User.findOneAndUpdate(
           { _id: params.userId },
           { $push: { thoughts: params.thoughtId } },
-          { new: true }
+          { new: true, runValidators: true }
         );
       })
       .then((dbUserData) => {
@@ -97,7 +92,6 @@ const { Thought, User } = require("../models");
       .catch((err) => res.json(err));
   },
 
-  // DELETE: DELETE/REMOVE A REACTION FROM A THOUGHT ➝ /api/thoughts/:thoughtId/reactions/:reactionId
   removeReaction({ params }, res) {
     Thought.findOneAndUpdate(
       { _id: params.thoughtId },

@@ -13,7 +13,6 @@ const { Schema, model } = require("mongoose");
      unique: true,
      trim: true,
      lowercase: true,
-     // Source for Mongoose matching validation: https://mongoosejs.com/docs/schematypes.html#string-validators
      match: [ 
      /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
      "Please enter a valid email address",
@@ -43,6 +42,10 @@ const { Schema, model } = require("mongoose");
  UserSchema.virtual('friendCount').get(function() {
    return this.friends.length;
  });
+
+ UserSchema.pre('remove', function(next) {
+    this.model('Thought').remove({ user: this._id }, next);
+  });
 
 
  const User = model("User", UserSchema);

@@ -76,7 +76,7 @@ const { getThoughtById, deleteThought } = require("./thought-controller");
          res.json(dbUserData);
        })
        .catch((err) => res.status(400).json(err));
-   }
+   },
 
     // ADD FRIEND TO USER'S FRIEND LIST
     addFriend({ params }, res) {
