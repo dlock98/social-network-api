@@ -1,4 +1,7 @@
-const { User } = require("../models");
+const { User, Thought } = require("../models");
+const { findByIdAndRemove } = require("../models/Thought");
+const thoughtController = require("./thought-controller");
+const { getThoughtById, deleteThought } = require("./thought-controller");
 
  const userController = {
    // GET ALL USERS ➝ /api/users
